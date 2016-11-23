@@ -14,7 +14,7 @@ class Runner:
         if ctx is None:
             ctx = cl.create_some_context()
         self.queue = cl.CommandQueue(ctx)
-        tpl = Template(open("ex1.cl").read())
+        tpl = Template(open("kernels.cl").read())
         src = tpl.render(moore=moore, T=t, R=r, S=s, P=p, DPMax=dpmax)
         self.prog = cl.Program(ctx, str(src)).build()
         self.rand = clrand.PhiloxGenerator(ctx).uniform
